@@ -3,6 +3,7 @@ package com.jokey.study.file;
 import com.jokey.study.entity.ColumnClass;
 import com.jokey.study.entity.GeneratorParam;
 import com.jokey.study.utils.CodeGenerateUtils;
+import lombok.Data;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Contact :976024396@qq.com
  * Description:实体类生成器
  */
-
+@Data
 public class ModelGenerator {
 
     private GeneratorParam generatorParam;
@@ -55,6 +56,7 @@ public class ModelGenerator {
             columnClass.setChangeColumnName(CodeGenerateUtils.replaceUnderLineAndUpperCase(resultSet.getString("COLUMN_NAME")));
             //字段在数据库的注释
             columnClass.setColumnComment(resultSet.getString("REMARKS"));
+
             columnClassList.add(columnClass);
         }
 

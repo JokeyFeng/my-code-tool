@@ -1,12 +1,15 @@
 package com.jokey.study.utils;
 
-import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.jokey.study.entity.GeneratorParam;
+import com.jokey.study.file.ModelGenerator;
 import freemarker.template.Template;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.Map;
 
 /**
@@ -24,12 +27,17 @@ public class CodeGenerateUtils {
      * @return
      * @throws Exception
      */
-    public static Connection getConnection() throws Exception {
-        return DruidDataSourceBuilder.create().build().getConnection();
+    public static Connection getConnection(GeneratorParam generatorParam) throws Exception {
+        Class.forName(generatorParam.getDriverClass());
+        Connection connection= DriverManager.getConnection(generatorParam.getUrl(), generatorParam.getUserName(), generatorParam.getPassword());
+        return connection;
     }
 
-    public static void generate() throws Exception {
-
+    public static void generate(ModelGenerator modelGenerator) throws Exception {
+        Connection connection = getConnection(modelGenerator.getGeneratorParam());
+        DatabaseMetaData databaseMetaData = connection.getMetaData();
+        ResultSet resultSet = databaseMetaData.getColumns(null,"%", modelGenerator.getGeneratorParam().getTableName(),"%");
+        modelGenerator.generateModelFile(resultSet);
     }
     /**
      * 下划线转驼峰

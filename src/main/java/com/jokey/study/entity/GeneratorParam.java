@@ -35,5 +35,11 @@ public class GeneratorParam {
      */
     private String path;
 
+    private String driverClass = "com.mysql.jdbc.Driver";
 
+    private String userName = "root";
+
+    private String password = "123456";
+
+    private String url;
 }
