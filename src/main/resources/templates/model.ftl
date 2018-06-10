@@ -13,20 +13,16 @@ public class ${table_name} {
     <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
     private String ${model.changeColumnName?uncap_first};
     </#if>
-
     <#if model.columnType = 'TIMESTAMP' >
     private Date ${model.changeColumnName?uncap_first};
     </#if>
-
     <#if model.columnType = 'INTEGER' >
     private Integer ${model.changeColumnName?uncap_first};
     </#if>
     </#list>
 </#if>
-
 <#if model_column?exists>
     <#list model_column as model>
-
     <#if (model.columnType = 'INTEGER')>
     public String get${model.changeColumnName}() {
     return this.${model.changeColumnName?uncap_first};
@@ -46,8 +42,6 @@ public class ${table_name} {
         this.${model.changeColumnName?uncap_first} = ${model.changeColumnName?uncap_first};
     }
     </#if>
-
-
     <#if model.columnType = 'TIMESTAMP' >
     public Date get${model.changeColumnName}() {
         return this.${model.changeColumnName?uncap_first};
