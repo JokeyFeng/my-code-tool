@@ -1,6 +1,9 @@
-package com.jokey.study.entity;
+package com.jokey.bingo.entity;
 
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author :JokeyFeng
@@ -9,7 +12,10 @@ import lombok.Data;
  * Description:
  */
 @Data
-public class GeneratorParam {
+public class GeneratorParam implements Serializable {
+
+    private static final long serialVersionUID = 5140007298285767140L;
+
     /**
      * 表名称
      */
@@ -31,6 +37,11 @@ public class GeneratorParam {
     private String basePackage;
 
     /**
+     * 代码生成时间
+     */
+    private Date generateDate;
+
+    /**
      * 生成代码保存的路径
      */
     private String path;
@@ -41,5 +52,5 @@ public class GeneratorParam {
 
     private String password = "123456";
 
-    private String url;
+    private String url = "jdbc:mysql://localhost:3306/test?useSSL=false";
 }

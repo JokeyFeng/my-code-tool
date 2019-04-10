@@ -1,6 +1,8 @@
-package com.jokey.study.entity;
+package com.jokey.bingo.entity;
 
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @author :JokeyFeng
@@ -9,7 +11,10 @@ import lombok.Data;
  * Description:
  */
 @Data
-public class ColumnClass {
+public class ColumnClass implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * 数据库字段名称
      **/

@@ -1,4 +1,4 @@
-package com.jokey.study.mvc;
+package com.jokey.bingo.mvc;
 
 /**
  * @author :JokeyFeng

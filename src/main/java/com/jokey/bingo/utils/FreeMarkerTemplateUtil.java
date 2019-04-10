@@ -1,4 +1,4 @@
-package com.jokey.study.utils;
+package com.jokey.bingo.utils;
 
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.cache.NullCacheStorage;
@@ -7,6 +7,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author :JokeyFeng
@@ -15,18 +16,18 @@ import java.io.IOException;
  * Description:模板生成工具
  */
 
-public class FreeMarkerTemplateUtils {
+public abstract class FreeMarkerTemplateUtil {
 
-    private FreeMarkerTemplateUtils() {
+    private FreeMarkerTemplateUtil() {
     }
 
     private static final Configuration CONFIGURATION =
             new Configuration(Configuration.VERSION_2_3_22);
 
-    static{
+    static {
         //这里比较重要，用来指定加载模板所在的路径
-        CONFIGURATION.setTemplateLoader(new ClassTemplateLoader(FreeMarkerTemplateUtils.class, "/templates"));
-        CONFIGURATION.setDefaultEncoding("UTF-8");
+        CONFIGURATION.setTemplateLoader(new ClassTemplateLoader(FreeMarkerTemplateUtil.class, "/templates"));
+        CONFIGURATION.setDefaultEncoding(StandardCharsets.UTF_8.name());
         CONFIGURATION.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         CONFIGURATION.setCacheStorage(NullCacheStorage.INSTANCE);
     }

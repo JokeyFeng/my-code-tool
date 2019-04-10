@@ -1,4 +1,4 @@
-package com.jokey.study.mvc;
+package com.jokey.bingo.mvc;
 
 /**
  * @author :JokeyFeng
@@ -7,5 +7,5 @@ package com.jokey.study.mvc;
  * Description:
  */
 
-public class BaseController<T> {
+public interface BaseService<T> {
 }

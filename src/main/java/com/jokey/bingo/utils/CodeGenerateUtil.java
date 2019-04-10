@@ -1,11 +1,12 @@
-package com.jokey.study.utils;
+package com.jokey.bingo.utils;
 
-import com.jokey.study.entity.GeneratorParam;
-import com.jokey.study.file.ModelGenerator;
+import com.jokey.bingo.entity.GeneratorParam;
+import com.jokey.bingo.generator.AbstractGenerator;
 import freemarker.template.Template;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -19,7 +20,7 @@ import java.util.Map;
  * Description:代码生成工具
  */
 
-public class CodeGenerateUtils {
+public abstract class CodeGenerateUtil {
 
     /**
      * 获取数据库连接
@@ -29,16 +30,16 @@ public class CodeGenerateUtils {
      */
     public static Connection getConnection(GeneratorParam generatorParam) throws Exception {
         Class.forName(generatorParam.getDriverClass());
-        Connection connection= DriverManager.getConnection(generatorParam.getUrl(), generatorParam.getUserName(), generatorParam.getPassword());
-        return connection;
+        return DriverManager.getConnection(generatorParam.getUrl(), generatorParam.getUserName(), generatorParam.getPassword());
     }
 
-    public static void generate(ModelGenerator modelGenerator) throws Exception {
-        Connection connection = getConnection(modelGenerator.getGeneratorParam());
+    public static void generate(AbstractGenerator generator) throws Exception {
+        Connection connection = getConnection(generator.getGeneratorParam());
         DatabaseMetaData databaseMetaData = connection.getMetaData();
-        ResultSet resultSet = databaseMetaData.getColumns(null,"%", modelGenerator.getGeneratorParam().getTableName(),"%");
-        modelGenerator.generateModelFile(resultSet);
+        ResultSet resultSet = databaseMetaData.getColumns(null, "%", generator.getGeneratorParam().getTableName(), "%");
+        generator.generateCodeFile(resultSet);
     }
+
     /**
      * 下划线转驼峰
      *
@@ -74,14 +75,21 @@ public class CodeGenerateUtils {
     public static void generateFileByTemplate(final String templateName,
                                               File file, Map<String, Object> dataMap,
                                               GeneratorParam generatorParam) throws Exception {
-        Template template = FreeMarkerTemplateUtils.getTemplate(templateName);
+        //如果文件不存在,创建新文件
+        if (!file.exists()) {
+            file.createNewFile();
+        }
         FileOutputStream fos = new FileOutputStream(file);
         dataMap.put("table_name_small", generatorParam.getTableName());
         dataMap.put("table_name", replaceUnderLineAndUpperCase(generatorParam.getTableName()));
         dataMap.put("author", generatorParam.getAuthor());
+        dataMap.put("resource_name", generatorParam.getResourceDescription());
+        dataMap.put("date", generatorParam.getGenerateDate());
         dataMap.put("package_name", generatorParam.getBasePackage());
         dataMap.put("table_annotation", generatorParam.getResourceDescription());
-        Writer out = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"), 10240);
+        Writer out = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8), 10240);
+
+        Template template = FreeMarkerTemplateUtil.getTemplate(templateName);
         template.process(dataMap, out);
     }
 }
