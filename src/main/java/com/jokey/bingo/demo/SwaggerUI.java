@@ -28,11 +28,6 @@ import java.util.Map;
 @EnableSwagger2
 public class SwaggerUI {
 
-    /**
-     * 生成restful风格的API文档
-     *
-     * @return
-     */
     @Bean
     public Docket createRestfulApi() {
         ApiInfo apiInfo = new ApiInfoBuilder()
