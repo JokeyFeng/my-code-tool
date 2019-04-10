@@ -1,4 +1,4 @@
-# generate-code-tool
+# my-code-tool
 代码生成工具，生成增删查改对应的controller、service、mapper、mapper.xml文件
 
 #集成插件框架
