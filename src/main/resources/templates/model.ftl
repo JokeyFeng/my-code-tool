@@ -1,5 +1,6 @@
 package ${package_name}.model;
 
+import javax.persistence.Id;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.sql.Time;
@@ -27,6 +28,9 @@ public class ${table_name} implements Serializable {
     */
     @ApiModelProperty("${model.columnComment!}")
     <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT' || model.columnType = 'CHAR')>
+    <#if model.changeColumnName = 'Id'>
+    @Id
+    </#if>
     private String ${model.changeColumnName?uncap_first};
     </#if>
     <#if model.columnType = 'TIMESTAMP' >

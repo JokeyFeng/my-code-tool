@@ -64,5 +64,6 @@ public class ModelGenerator extends AbstractGenerator {
         dataMap.put("model_column", columnClassList);
 
         CodeGenerateUtil.generateFileByTemplate(templateName, mapperFile, dataMap, generatorParam);
+        logger.info("{}model层java代码已生成.....", generatorParam.getResourceDescription());
     }
 }

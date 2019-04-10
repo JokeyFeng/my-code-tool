@@ -32,5 +32,6 @@ public class ControllerGenerator extends AbstractGenerator {
         Map<String, Object> dataMap = new HashMap<>(50);
 
         CodeGenerateUtil.generateFileByTemplate(templateName, mapperFile, dataMap, super.generatorParam);
+        logger.info("{}controller层java代码已生成.....", generatorParam.getResourceDescription());
     }
 }

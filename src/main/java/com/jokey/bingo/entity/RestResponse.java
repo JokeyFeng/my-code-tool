@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * @author Zhengjingfeng
  * @created 2019/4/10 13:34
- * @comment
+ * @comment 请求响应数据封装实体
  */
 @Data
 public class RestResponse<T> {

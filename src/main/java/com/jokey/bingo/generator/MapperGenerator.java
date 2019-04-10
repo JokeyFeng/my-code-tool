@@ -32,5 +32,6 @@ public class MapperGenerator extends AbstractGenerator {
         File mapperFile = new File(path);
         Map<String, Object> dataMap = new HashMap<>(50);
         CodeGenerateUtil.generateFileByTemplate(templateName, mapperFile, dataMap, generatorParam);
+        logger.info("{}mapper层java代码已生成.....", generatorParam.getResourceDescription());
     }
 }

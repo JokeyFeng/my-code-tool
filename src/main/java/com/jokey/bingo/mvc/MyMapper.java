@@ -9,6 +9,6 @@ import tk.mybatis.mapper.common.MySqlMapper;
  * Contact :976024396@qq.com
  * Description: mapper层接口
  */
-
 public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
+
 }

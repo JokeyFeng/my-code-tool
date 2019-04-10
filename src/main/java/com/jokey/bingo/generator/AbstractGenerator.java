@@ -1,6 +1,8 @@
 package com.jokey.bingo.generator;
 
 import com.jokey.bingo.entity.GeneratorParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 
@@ -10,6 +12,8 @@ import java.sql.ResultSet;
  * @comment 模板生成器抽象类
  */
 public abstract class AbstractGenerator {
+
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 代码生成器参数

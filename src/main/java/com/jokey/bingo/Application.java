@@ -1,7 +1,7 @@
 package com.jokey.bingo;
 
 import com.jokey.bingo.entity.GeneratorParam;
-import com.jokey.bingo.generator.ModelGenerator;
+import com.jokey.bingo.generator.*;
 import com.jokey.bingo.utils.CodeGenerateUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,12 +24,18 @@ public class Application {
         GeneratorParam generatorParam = new GeneratorParam();
         generatorParam.setUrl("jdbc:mysql://192.168.102.147:3306/test?useSSL=false");
         generatorParam.setAuthor("jokey");
-        generatorParam.setBasePackage("com.jokey.sys");
+        generatorParam.setBasePackage("com.jokey.bingo.demo");
         generatorParam.setTableName("sys_user");
         generatorParam.setPath("D://generate//");
         generatorParam.setGenerateDate(new Date());
-        generatorParam.setResourceDescription("系统用户管理表");
+        generatorParam.setResourceDescription("系统用户管理");
+        createDir(generatorParam.getPath());
         CodeGenerateUtil.generate(new ModelGenerator(generatorParam));
+        CodeGenerateUtil.generate(new MapperGenerator(generatorParam));
+        CodeGenerateUtil.generate(new MappingGenerator(generatorParam));
+        CodeGenerateUtil.generate(new ServiceGenerator(generatorParam));
+        CodeGenerateUtil.generate(new ServiceImplGenerator(generatorParam));
+        CodeGenerateUtil.generate(new ControllerGenerator(generatorParam));
     }
 
     /**
