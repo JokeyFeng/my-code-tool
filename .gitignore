@@ -28,5 +28,3 @@ gen/
 *.class
 *.jar
 *.txt
-ctm-common/.settings/
-ctm-gd-service/.settings/
