@@ -94,7 +94,6 @@
     </dependencies>
 
     <build>
-      <!--  <defaultGoal>compile</defaultGoal> -->
         <plugins>
             <!--添加maven插件指定jdk版本-->
             <plugin>
