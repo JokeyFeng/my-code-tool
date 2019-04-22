@@ -33,13 +33,13 @@ public class SysUserController extends BaseController<SysUser> {
     @ApiOperation("根据ID查询")
     @ApiImplicitParam(name = "id", value = "主键ID", paramType = "query", dataType = "String")
     public RestResponse<SysUser> find(@RequestParam String id) {
-        return new RestResponse<>(sysUserService.selectByKey(id));
+        return RestResponse.success(sysUserService.selectByKey(id));
     }
 
     @GetMapping("/page")
     @ApiOperation("分页查询")
     public RestResponse<PageInfo<SysUser>> page(Page page) {
-        return new RestResponse<>(sysUserService.selectByPage(page));
+        return RestResponse.success(sysUserService.selectByPage(page));
     }
 
     @PostMapping("/save")
@@ -47,20 +47,20 @@ public class SysUserController extends BaseController<SysUser> {
     @ApiImplicitParam(name = "sysUser", value = "系统用户管理", paramType = "body", dataType = "SysUser")
     public RestResponse insert(@RequestBody SysUser sysUser) {
         sysUser.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-        return new RestResponse<>(sysUserService.save(sysUser));
+        return RestResponse.success(sysUserService.save(sysUser));
     }
 
     @DeleteMapping("/ids")
     @ApiOperation("根据主键ID批量删除")
     @ApiImplicitParam(name = "ids", value = "主键ID集合", paramType = "query", dataType = "String", allowMultiple = true)
     public RestResponse delete(@RequestParam List<String> ids) {
-        return new RestResponse<>(sysUserService.batchDelete(ids, "id", SysUser.class));
+        return RestResponse.success(sysUserService.batchDelete(ids, "id", SysUser.class));
     }
 
     @PutMapping("/put")
     @ApiOperation("修改")
     @ApiImplicitParam(name = "sysUser", value = "系统用户管理", paramType = "body", dataType = "SysUser")
     public RestResponse update(@RequestBody SysUser sysUser) {
-        return new RestResponse<>(sysUserService.updateNotNull(sysUser));
+        return RestResponse.success(sysUserService.updateNotNull(sysUser));
     }
 }
