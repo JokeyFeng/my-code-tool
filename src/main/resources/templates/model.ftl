@@ -11,11 +11,10 @@ import lombok.Data;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
-* @author :${author}
-* Date:${date?string('yyyy年M月d日')}
-* Description:${resource_name}
-*/
-
+ * @author :${author}
+ * Date:${date?string('yyyy年M月d日')}
+ * Description:${resource_name}
+ */
 @Data
 public class ${table_name} implements Serializable {
 

@@ -46,6 +46,14 @@ public interface BaseService<T> {
     int save(T entity);
 
     /**
+     * 批量新增
+     *
+     * @param list
+     * @return
+     */
+    int batchSave(List<T> list);
+
+    /**
      * 主键删除
      *
      * @param key

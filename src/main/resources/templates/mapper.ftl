@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 /**
-* @Author ${author}
-* @Date ${date?string('yyyy年M月d日')}
-*/
+ * @author ${author}
+ * Date ${date?string('yyyy年M月d日')}
+ */
 @Mapper
 @Component
 public interface ${table_name}Mapper extends MyMapper<${table_name}> {

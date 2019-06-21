@@ -11,10 +11,10 @@ import ${package_name}.mapper.${table_name}Mapper;
 import ${package_name}.service.${table_name}Service;
 
 /**
-* @Author ${author}
-* @Date ${date?string('yyyy年M月d日')}
-* @Version 1.0
-*/
+ * @author ${author}
+ * Date ${date?string('yyyy年M月d日')}
+ * Version 1.0
+ */
 @Service
 public class ${table_name}ServiceImpl extends BaseServiceImpl<${table_name}> implements ${table_name}Service {
 

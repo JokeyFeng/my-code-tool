@@ -20,10 +20,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
-* @Author ${author}
-* @Date ${date?string('yyyy年M月d日')}
-* @Version 1.0
-*/
+ * @author ${author}
+ * Date ${date?string('yyyy年M月d日')}
+ * Version 1.0
+ */
 @RestController
 @Api(tags = "${resource_name}")
 @RequestMapping(value = "/v1/${table_name?uncap_first}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
