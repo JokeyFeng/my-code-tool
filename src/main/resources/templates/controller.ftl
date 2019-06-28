@@ -24,6 +24,7 @@ import java.util.UUID;
  * Date ${date?string('yyyy年M月d日')}
  * Version 1.0
  */
+@CrossOrigin("*")
 @RestController
 @Api(tags = "${resource_name}")
 @RequestMapping(value = "/v1/${table_name?uncap_first}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
